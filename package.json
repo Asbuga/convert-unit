@@ -1,0 +1,12 @@
+{
+  "name": "unit-converter",
+  "version": "1.0.0",
+  "description": "a program for converting units of measurement",
+  "main": "convert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andreii buga",
+  "license": "ISC",
+  "type": "module"
+}
