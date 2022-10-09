@@ -12,6 +12,12 @@ const convertHelp = {
         let requiredValue = Number(((knownValues * knownUnit) / requiredUnit).toFixed(2));
         
         return requiredValue;
+    },
+
+    result: (input, standatr) => {return {
+            unit: input.convert_to,
+            value: convertHelp.convertUnits(input, standatr),
+        }
     }
 }
 

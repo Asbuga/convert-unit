@@ -1,6 +1,6 @@
 import { createRequire } from 'module';
 
-import validator  from './validator/validator.mjs';
+import validator  from './module/validator.mjs';
 import convertHelp from './module/convert-help.mjs';
 
 
@@ -13,12 +13,5 @@ const input = require('./data/input/input.json');
 
 // Validator data ... 
 
-
-// Convert units.
-const result = {
-    unit: input.convert_to,
-    value: convertHelp.convertUnits(input, standatr),
-};
-
-let data = JSON.stringify(result)
-fs.writeFile('./data/output/output.json', data);
+let data = JSON.stringify(convertHelp.result(input, standatr));
+// fs.writeFile('./data/output/output.json', data);
