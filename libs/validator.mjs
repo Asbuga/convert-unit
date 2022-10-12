@@ -1,26 +1,20 @@
 const validator = {
     
-    _nameKey: function (string) {
-        if (/^[a-z]{1,2}$/gm.test(string))
-            return true;
-        const IncorrectNameError = new Error("Incorrect name of the unit.");
-        console.log(IncorrectNameError.message);
-        return false;
+    nameKey: function (string) {
+        if (/^[a-z]{1,2}$/gm.test(string)) return true;
+        throw Error("Incorrect name of the unit.");
     },
 
-    _value: function (num) {
-        if (typeof num === 'number')
-            return true;
-        const IncorrectValueError = new Error("Invalid unit value.");
-        console.log(IncorrectValueError.message);
-        return false;
+    value: function (num) {
+        if (typeof num === 'number') return true;
+        return new Error("Invalid unit value.");
     },
 
     inputData: function (data) {
         try {
-            if (validNameKey(data.distance.unit) &&
-                validValue(data.distance.value) &&
-                validNameKey(data.convert_to))
+            if (validator.nameKey(data.distance.unit) &&
+                validator.value(data.distance.value) &&
+                validator.nameKey(data.convert_to) === true)
                 return true;
         }
         catch (e) {
@@ -28,20 +22,11 @@ const validator = {
                 console.log(TypeError.message);
                 return false;
             }
-            if (e instanceof IncorrectNameError) {
-                console.log(IncorrectNameError.message);
-                return false;
-            }
-            if (e instanceof IncorrectValueError) {
-                console.log(IncorrectValueError.message);
-                return false;
-            }
             else {
                 console.log(e.message);
                 return false;
             }
         }
-        return false;
     }, 
 
     expandData: function (data) {

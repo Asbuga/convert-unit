@@ -13,7 +13,8 @@ const input = require('./data/input/input.json');
 
 // Validator data ... 
 
-// Export data from *.json.
+
+// Export data from output.json.
 const output = JSON.stringify(convertHelp.result(input, standatr));
 
 const fs = require('fs');

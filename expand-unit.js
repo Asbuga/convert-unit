@@ -1,11 +1,10 @@
 import { createRequire } from 'module';
 
 import validator  from './module/validator.mjs';
-import convertHelp from './module/convert-help.mjs';
 
 
-// Create function "require" for import *.json.
 const require = createRequire(import.meta.url);
-const fs = require('fs');
+const input = require('./data/input/input.json');
 
-fs.readFile()
+console.log(validator.inputData(input))
+console.log(validator.nameKey(input.unit))
