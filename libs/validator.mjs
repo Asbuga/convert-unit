@@ -2,12 +2,12 @@ const validator = {
     
     nameKey: function (string) {
         if (/^[a-z]{1,2}$/gm.test(string)) return true;
-        throw Error("Incorrect name of the unit.");
+        return false
     },
 
     value: function (num) {
         if (typeof num === 'number') return true;
-        return new Error("Invalid unit value.");
+        return false
     },
 
     inputData: function (data) {
@@ -16,16 +16,10 @@ const validator = {
                 validator.value(data.distance.value) &&
                 validator.nameKey(data.convert_to) === true)
                 return true;
+            return false
         }
         catch (e) {
-            if (e instanceof TypeError) {
-                console.log(TypeError.message);
-                return false;
-            }
-            else {
-                console.log(e.message);
-                return false;
-            }
+            console.log(e.message);
         }
     }, 
 
@@ -33,8 +27,8 @@ const validator = {
         let flag = true;
         try {
             for (let key in data) {
-                if (validNameKey(key) && 
-                    validValue(data[key])) {
+                if (validator.nameKey(key) && 
+                    validator.value(data[key])) {
                         if (flag === false) return false;
                         else return true;
                 }
@@ -44,22 +38,7 @@ const validator = {
             }
         }
         catch (e) {
-            if (e instanceof TypeError) {
-                console.log(TypeError.message);
-                return false;
-            }
-            if (e instanceof IncorrectNameError) {
-                console.log(IncorrectNameError.message);
-                return false;
-            }
-            if (e instanceof IncorrectValueError) {
-                console.log(IncorrectValueError.message);
-                return false;
-            }
-            else {
-                console.log(e.message);
-                return false;
-            }
+            console.log(e.message);
         }
         return flag;
     } 
